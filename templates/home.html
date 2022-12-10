@@ -1,7 +1,13 @@
 {% extends 'layout.html' %}
+{% set page_title = 'Home: '%}
 
 {% block content %}
-    <h3>templates/home.html</h3>
+    <br>
+    <h3>Logfile:</h3>
+    <br>
+    {% for line in log %}
+        <p class="log-line">[ {{line[0]}} ] {{line[1]}}</p>
+    {% endfor %}
 {% endblock %}
 
 {% block scripts %}
@@ -10,7 +16,7 @@
         console.log('--- js file loaded ---');
 
         var content =  $.ajax({
-            url: "https://api.nasa.gov/planetary/apod?api_key=VM2f40EQQ0tk58nvmPhpVa6gthc5ma6Chgll56N7",
+            url: "https://alexicoo.nl/img/stock-graph.jpeg",
             contentType: "application/json",
             dataType: 'json',
             success: function(result){

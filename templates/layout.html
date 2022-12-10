@@ -7,29 +7,47 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
-        <link rel ="stylesheet" href="{{url_for('static', filename='stylesheets/layout.css')}}">
+        <link rel ="stylesheet" href="{{url_for('static', filename='style.css')}}">
         <title>
-            {% if page_title %}
-                {{page_title}}
-            {% else %}
-                Welcome
-            {% endif %}
+
         </title>
-        {% block styles %}
-        {% endblock %}
+
     </head>
     <body>
-        {% if user_logged_in %}
-            {% block admin_navbar %}
-            {% endblock %}
-        {% endif %}
-        {% block navbar %}
-            {% include "navbar.html" %}
-        {% endblock %}
-        {% block content %}
-        {% endblock %}
-        {% block scripts %}
+        <div class="header">
+            AI Stock Trade
+            <img src="{{url_for('static', filename='img/meta_logo.png')}}" width="200">
+        </div>
+        <div class="dashboard">
+          <div class="dash-item"><span class="gray">Money: </span>{{money}}</div>
+          <div class="dash-item"><span class="gray">Stock: </span>{{stock}}</div> 
+          <div class="dash-item"><span class="gray">Course: </span>{{course}}</div> 
+          <div class="dash-item"><span class="gray">Value: </span>{{value}}</div>
+          <div class="dash-item"><span class="gray">Total: </span>{{total}}</div>
+        </div>
+        <div class="actionbar">
+            <form action="{{url_for('home_page')}}" method="post">
+                <button name = "action" value = "buy" class="btn btn-success btn-sm" id="buy">buy</button>
+                <button name = "action" value = "sell" class="btn btn-danger btn-sm" id="sell">sell</button>
+                -
+                <button name = "action" value = "update" class="btn btn-warning btn-sm" id="update">update course</button>
+                -
+                <button name = "action" value = "a-money" class="btn btn-info btn-sm" id="a-money">adjust money</button>
+                <button name = "action" value = "a-stock" class="btn btn-primary btn-sm" id="a-stock">adjust stock</button>
+                -
+                <button name = "action" value = "comment" class="btn btn-secondary btn-sm" id="comment">add comment</button>
+                -
+                value: <input type="text" name="value" id="value" value="0">
+                <!--button name = "action" class="btn btn-secondary btn-sm" id=""></button-->
+            </form>
+            </div>
+        <div class="container">
+            {% block content %}
 
-        {% endblock %}
+            {% endblock %}
+        </div>
+        <div class="footer">
+            Made by Alex van Winkel
+        </div>
     </body>
 </html>
