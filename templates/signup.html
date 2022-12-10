@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class='container'>
+    <h1 class='text-center'>Sign Up</h1>
+    {% if msg %}
+        <div class="alert alert-danger" role="alert">
+            {{msg}}
+        </div>
+    {% endif %}
+
+    <form method='post'>
+        <input type="text" class="text-input" name="username" placeholder="username">
+        <input type="password" class="text-input" name="pssw1" placeholder="password">
+        <input type="password" class="text-input" name="pssw2" placeholder="password confirm">
+        <button type="submit">Register</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='javascript/home.js') }}"></script>
+{% endblock %}
