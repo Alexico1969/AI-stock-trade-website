@@ -39,7 +39,7 @@ def home_page():
     log_text = ""
     
     if request.method == 'POST':
-
+        log_text = ""
         action = request.form['action']
         value = request.form['value']
         if action == 'buy':
@@ -58,7 +58,6 @@ def home_page():
             log_text ="Adjusted money value to:",money
         elif action == 'a-stock':
             stock = int(value)
-            print("stock",stock)
             log_text = "Adjusted stock value to:",stock
         elif action == 'comment':
             log_text = "Comment: " + value
@@ -71,7 +70,7 @@ def home_page():
     conn.commit()
 
     if log_text != "":
-        c.execute(''' INSERT INTO log (log) VALUES (?) ''', (log_text,))
+        c.execute(''' INSERT INTO log (log) VALUES (?) ''', (str(log_text),))
         log_text = ">> CURRENT VALUES: money: " + str(money_f) + " - stock: " + str(stock) + " - course: " + str(course) + " - stock value: " + str(value_f) + " - total value: " + str(total_f)
         c.execute(''' INSERT INTO log (log) VALUES (?) ''', (log_text,))
         conn.commit()
